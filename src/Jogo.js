@@ -9,9 +9,10 @@ export default function Jogo(props) {
             [" ", " ", " "]
         ]
     )
+
     const[vezJogador,setVezJogador] = useState("X")
 
-    function VezJogador() {
+    function FVezJogador() {
         if (vezJogador == "X"){
             setVezJogador("O")
         }
@@ -20,8 +21,15 @@ export default function Jogo(props) {
         }
     }
 
-    const handleClickB = () => {
-        VezJogador()
+    const handleClickB = (matrizX, matrizY) => {
+        if (matriz[matrizX][matrizY] == " "){ 
+            const novaMatriz = [[...matriz[0]], [...matriz[1]], [...matriz[2]]]
+                novaMatriz[matrizX][matrizY] = vezJogador;
+                setMatriz(novaMatriz);
+                FVezJogador()
+
+        }
+        
     }
 
     const handleClick = (event) => {
@@ -31,20 +39,38 @@ export default function Jogo(props) {
         <View >
             <Text>Jogo</Text>
             <Button title='Voltar' onPress={handleClick}></Button>
-            <View>
-                <Pressable onPress={handleClickB}><Text>{matriz[0][0]}</Text></Pressable>
-                <Pressable onPress={handleClickB}><Text>{matriz[0][1]}</Text></Pressable>
-                <Pressable onPress={handleClickB}><Text>{matriz[0][2]}</Text></Pressable>
+            <View style={styles.view}>
+                <Pressable style={styles.Pressable} onPress={() => {
+                    handleClickB(0,0)
+                }}> <Text >{matriz[0][0]}</Text></Pressable>
+                <Pressable style={styles.Pressable} onPress={() => {
+                    handleClickB(0,1)
+                }} ><Text>{matriz[0][1]}</Text></Pressable>
+                <Pressable style={styles.Pressable} onPress={() => {
+                    handleClickB(0,2)
+                }} ><Text>{matriz[0][2]}</Text></Pressable>
             </View>
-            <View>
-                <Pressable onPress={handleClickB}><Text>{matriz[1][0]}</Text></Pressable>
-                <Pressable onPress={handleClickB}><Text>{matriz[1][1]}</Text></Pressable>
-                <Pressable onPress={handleClickB}><Text>{matriz[1][2]}</Text></Pressable>
+            <View style={styles.view}>
+                <Pressable style={styles.Pressable} onPress={() => {
+                    handleClickB(1,0)
+                }}><Text>{matriz[1][0]}</Text></Pressable>
+                <Pressable style={styles.Pressable} onPress={() => {
+                    handleClickB(1,1)
+                }}><Text>{matriz[1][1]}</Text></Pressable>
+                <Pressable style={styles.Pressable}  onPress={() => {
+                    handleClickB(1,2)
+                }}><Text>{matriz[1][2]}</Text></Pressable>
             </View>
-            <View>
-                <Pressable onPress={handleClickB}><Text>{matriz[2][0]}</Text></Pressable>
-                <Pressable onPress={handleClickB}><Text>{matriz[2][1]}</Text></Pressable>
-                <Pressable onPress={handleClickB}><Text>{matriz[2][2]}</Text></Pressable>
+            <View style={styles.view}>
+                <Pressable style={styles.Pressable} onPress={() => {
+                    handleClickB(2,0)
+                }}><Text>{matriz[2][0]}</Text></Pressable>
+                <Pressable style={styles.Pressable} onPress={() => {
+                    handleClickB(2,1)
+                }}><Text>{matriz[2][1]}</Text></Pressable>
+                <Pressable style={styles.Pressable} onPress={() => {
+                    handleClickB(2,2)
+                }}><Text>{matriz[2][2]}</Text></Pressable>
             </View>
         </View>
 
@@ -52,9 +78,19 @@ export default function Jogo(props) {
 }
 
 const styles = StyleSheet.create({
-    view: {
-
+    Pressable: {
+        backgroundColor: "blue",
+        width: 80,
+        height: 50,  
+        alignItems: "center",  
+        justifyContent: "center",       
     },
+
+    view: {
+        flexDirection: "row",
+        gap: 20, 
+        margin: 10  
+    }
 
 
 });
