@@ -4,13 +4,19 @@ import { StyleSheet, View, TextInput, Button} from 'react-native';
 
 
 
+
 export default function HomeJogo(props) {
     
     const [player1, setPlayer1] = useState('')
     const [player2, setPlayer2] = useState('')
 
-    const handleClick = () => {
+    const handleClick = (props) => {
+        if (props.jogo == "velha"){
         props.changeScreen("jogo")
+        }
+        if (props.jogo == "memoria"){
+            props.changeScreen("memoria")
+        }
     }
     
     return(
