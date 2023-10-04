@@ -4,29 +4,25 @@ import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 
 export default function Home(props) {
 
-  const [player1,setPlayer1] = useState("");
-  const [player2,setPlayer2] = useState("");
-
   const handleClick = (event) => {
-    props.mudarNomeJogadores(player1, player2);
-    props.changeScreen("jogo")
+    props.changeScreen('homeJogo')
+    props.changeJogo('velha')
+  }
+
+  const handleClick2 = () => {
+    props.changeScreen('forca')
+  }
+
+  const handleClick3 = () => {
+    props.changeScreen('memoria')
+    props.changeJogo('memoria')
   }
 
   return (
     <View style={styles.container}>
-      <Text>Nome: {player1} </Text>
-      <TextInput 
-      style={styles.input} 
-      placeholder='Player 1' 
-      onChangeText={setPlayer1}
-      />
-      <Text>Nome: {player2} </Text>
-      <TextInput 
-      style={styles.input} 
-      placeholder='Player 2' 
-      onChangeText={setPlayer2}
-      />
-      <Button title='Botão' onPress={handleClick}></Button>
+      <Button title='Jogo da velha' onPress={handleClick}></Button>
+      <Button title='Forca' onPress={handleClick2}></Button>
+      <Button title='Jogo da memória' onPress={handleClick3}></Button>
        </View>
   );
 }
