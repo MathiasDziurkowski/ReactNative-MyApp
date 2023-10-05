@@ -4,6 +4,7 @@ import { StyleSheet, View} from 'react-native';
 import Home from './src/Home';
 import Jogo from './src/JogoDaVelha';
 import Forca from './src/Forca'
+import HomeForca from './src/HomeForca';
 import HomeJogo from './src/HomeJogo'
 
 
@@ -21,7 +22,7 @@ export default function App() {
     setPlayer1(nome1);
     setPlayer2(nome2);
   }
-
+  const checkJogo = (checkJogo) => checkJogo === jogo;
   const changeScreen = (newScreen) => setScreen(newScreen);
   const changeJogo = (newJogo) => setJogo(newJogo);
 
@@ -29,9 +30,10 @@ export default function App() {
     <View style={styles.container}>
       <StatusBar style="auto" />
       {checkScreen("home") && <Home mudarNomeJogadores={setJogadores} changeScreen={changeScreen} />}
-      {checkScreen("jogo") && <Jogo changeScreen={changeScreen} changeJogo={changeJogo} />}
-      {checkScreen("homeJogo") && <HomeJogo changeScreen={changeScreen} />}
+      {checkScreen("jogo") && checkJogo("velha") && <Jogo changeScreen={changeScreen} changeJogo={changeJogo} />}
+      {checkScreen("HomeJogo") && <HomeJogo changeScreen={changeScreen} changeJogo={changeJogo}/>}
       {checkScreen("forca") && <Forca changeScreen={changeScreen} changeJogo={changeJogo}  />}
+      {checkScreen("HomeForca") && <HomeForca changeScreen={changeScreen} changeJogo={changeJogo}/>}
        </View>
   );
 }

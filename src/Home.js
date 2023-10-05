@@ -4,18 +4,18 @@ import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 
 export default function Home(props) {
 
-  const handleClick = (event) => {
-    props.changeScreen('homeJogo')
-    props.changeJogo('velha')
+  const handleClick = () => {
+    props.changeScreen('HomeJogo')
+    props.changeJogo("velha")
   }
 
   const handleClick2 = () => {
-    props.changeScreen('forca')
+    props.changeScreen('HomeForca')
   }
 
   const handleClick3 = () => {
-    props.changeScreen('memoria')
-    props.changeJogo('memoria')
+    props.changeScreen('HomeJogo')
+    props.changeJogo("memoria")
   }
 
   return (
