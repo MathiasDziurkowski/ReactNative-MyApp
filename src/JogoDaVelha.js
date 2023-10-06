@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Stylesheet, View, Text, Button, StyleSheet, FlatList, Pressable } from "react-native";
 
-export default function Jogo(props) {
+export default function JogoDaVelha(props) {
     const [matriz, setMatriz] = useState(
         [
             [" ", " ", " "],
@@ -11,13 +11,16 @@ export default function Jogo(props) {
     )
 
     const[vezJogador,setVezJogador] = useState("X")
+    const[vezPlayer,setVezPlayer] = useState(0);
 
     function FVezJogador() {
         if (vezJogador == "X"){
+            setVezPlayer(1);
             setVezJogador("O")
         }
         else {
             setVezJogador("X")
+            setVezPlayer(0)
         }
     }
 
@@ -39,35 +42,47 @@ export default function Jogo(props) {
 
     function checarVitoria() {
         if (matriz[0][0] == matriz[1][1] && matriz[1][1] == matriz[2][2] && matriz[0][0] != " "){
-            alert("O jogador ganhador foi: "+ matriz[0][0])
+            mostrarVitoria()
         }
         if (matriz[0][0] == matriz[0][1] && matriz[0][1] == matriz[0][2] && matriz[0][0] != " "){
-            alert("O jogador ganhador foi: "+ matriz[0][0])
+            mostrarVitoria()
         }
         if (matriz[1][0] == matriz[1][1] && matriz[1][1] == matriz[1][2] && matriz[1][0] != " "){
-            alert("O jogador ganhador foi: "+ matriz[1][0])
+            mostrarVitoria()
         }
         if (matriz[2][0] == matriz[2][1] && matriz[2][1] == matriz[2][2] && matriz[2][0] != " "){
-            alert("O jogador ganhador foi: "+ matriz[2][0])
+            mostrarVitoria()
         }
         if (matriz[0][0] == matriz[1][0] && matriz[1][0] == matriz[2][0] && matriz[0][0] != " "){
-            alert("O jogador ganhador foi: "+ matriz[0][0])
+            mostrarVitoria()
         }
         if (matriz[0][1] == matriz[1][1] && matriz[1][1] == matriz[2][1] && matriz[0][1] != " "){
-            alert("O jogador ganhador foi: "+ matriz[0][1])
+            mostrarVitoria()
         }
         if (matriz[0][2] == matriz[1][2] && matriz[1][2] == matriz[2][2] && matriz[0][2] != " "){
-            alert("O jogador ganhador foi: "+ matriz[0][2])
+            mostrarVitoria()
         }
         if (matriz[0][2] == matriz[1][1] && matriz[1][1] == matriz[2][0] && matriz[0][2] != " "){
-            alert("O jogador ganhador foi: "+ matriz[0][2])
-        }
+            mostrarVitoria()
+        }   
     }
     const handleClick = (event) => {
-        props.changeScreen("homeJogo");
+        props.changeScreen("HomeJogo");
+    }
+
+    const mostrarVitoria = () => {
+        if (vezJogador != "X"){
+            alert("O jogador ganhador foi:" + props.player[0])
+            props.changeScreen("HomeJogo")
+        }
+        else{
+            alert("O jogador ganhador foi:" + props.player[1])
+            props.changeScreen("HomeJogo")
+        }
     }
     return (
         <View >
+            <Text>Vez de: {props.player[vezPlayer]}</Text>
             <Text>Jogo da velha</Text>
             <Button title='Voltar' onPress={handleClick}></Button>
             <View style={styles.view}>

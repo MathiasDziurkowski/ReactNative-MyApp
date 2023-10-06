@@ -10,12 +10,14 @@ export default function HomeJogo(props) {
     const [player1, setPlayer1] = useState('')
     const [player2, setPlayer2] = useState('')
 
-    const handleClick = (props) => {
+    const handleClick = () => {
         if (props.jogo == "velha"){
         props.changeScreen("jogo")
+        props.mudarNomeJogadores(player1, player2)
         }
         if (props.jogo == "memoria"){
             props.changeScreen("memoria")
+            props.mudarNomeJogadores(player1, player2)
         }
     }
     

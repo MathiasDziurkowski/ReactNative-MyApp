@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, View} from 'react-native';
 import Home from './src/Home';
-import Jogo from './src/JogoDaVelha';
+import JogoDaVelha from './src/JogoDaVelha';
 import Forca from './src/Forca'
 import HomeForca from './src/HomeForca';
 import HomeJogo from './src/HomeJogo'
@@ -15,8 +15,10 @@ export default function App() {
   const [player1,setPlayer1] = useState("");
   const [player2,setPlayer2] = useState("");
   const [jogo, setJogo] = useState("");
+  const [palavra,setPalavra] = useState("");
 
   const checkScreen = (checkScreen) => checkScreen === screen;
+  const changePalavra = (newPalavra) => setPalavra(newPalavra);
 
   const setJogadores = (nome1, nome2) => {
     setPlayer1(nome1);
@@ -29,10 +31,10 @@ export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      {checkScreen("home") && <Home mudarNomeJogadores={setJogadores} changeScreen={changeScreen} />}
-      {checkScreen("jogo") && checkJogo("velha") && <Jogo changeScreen={changeScreen} changeJogo={changeJogo} />}
-      {checkScreen("HomeJogo") && <HomeJogo changeScreen={changeScreen} changeJogo={changeJogo}/>}
-      {checkScreen("forca") && <Forca changeScreen={changeScreen} changeJogo={changeJogo}  />}
+      {checkScreen("home") && <Home mudarNomeJogadores={setJogadores} changeScreen={changeScreen} changeJogo={changeJogo}/>}
+      {checkScreen("jogo") && <JogoDaVelha changeScreen={changeScreen} changeJogo={changeJogo} player={[player1, player2]} />}
+      {checkScreen("HomeJogo") && <HomeJogo changeScreen={changeScreen} mudarNomeJogadores={setJogadores} changeJogo={changeJogo} jogo={jogo}/>}
+      {checkScreen("forca") && <Forca changeScreen={changeScreen} changeJogo={changeJogo} changePalavra={changePalavra}  />}
       {checkScreen("HomeForca") && <HomeForca changeScreen={changeScreen} changeJogo={changeJogo}/>}
        </View>
   );
