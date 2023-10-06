@@ -34,8 +34,8 @@ export default function App() {
       {checkScreen("home") && <Home mudarNomeJogadores={setJogadores} changeScreen={changeScreen} changeJogo={changeJogo}/>}
       {checkScreen("jogo") && <JogoDaVelha changeScreen={changeScreen} changeJogo={changeJogo} player={[player1, player2]} />}
       {checkScreen("HomeJogo") && <HomeJogo changeScreen={changeScreen} mudarNomeJogadores={setJogadores} changeJogo={changeJogo} jogo={jogo}/>}
-      {checkScreen("forca") && <Forca changeScreen={changeScreen} changeJogo={changeJogo} changePalavra={changePalavra}  />}
-      {checkScreen("HomeForca") && <HomeForca changeScreen={changeScreen} changeJogo={changeJogo}/>}
+      {checkScreen("forca") && <Forca changeScreen={changeScreen} changeJogo={changeJogo} palavra={palavra}  />}
+      {checkScreen("HomeForca") && <HomeForca changeScreen={changeScreen} changeJogo={changeJogo} changePalavra={changePalavra}/>}
        </View>
   );
 }
