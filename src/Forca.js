@@ -19,6 +19,7 @@ export default function Forca(props) {
 
     function handleClick() {
         confirmarChute(chute)
+        verificarVitoria()
     }
 
     function handleClick2() {
@@ -33,8 +34,8 @@ export default function Forca(props) {
             var possuiLetra = false;
 
             for (let index = 0; index < (props.palavra).length; index++){
-                if (props.palavra.charAt(index) == chute){
-                    newLetras[index] = chute
+                if (props.palavra.charAt(index).toUpperCase() == chute.toUpperCase()){
+                    newLetras[index] = chute.toLowerCase()
                     possuiLetra = true;
                 }
             }
@@ -61,6 +62,13 @@ export default function Forca(props) {
         }
 
 
+    }
+
+    function verificarVitoria() {
+        if (chute.match(props.palavra)){
+            alert("Você ganhou")
+            props.changeScreen("HomeForca")
+        }
     }
 
 
